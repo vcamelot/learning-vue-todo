@@ -11,7 +11,7 @@
       <div class="row" v-for="t in filteredTasks" v-bind:key="t.action">
         <div class="col">{{ t.action }}</div>
         <div class="col-2 text-center">
-          <input type="checkbox" v-model="t.done" class="form-check-input" />
+          <input type="checkbox" v-model="t.done" class="form-check-input" @change="saveTodos" />
           {{ t.done }}
         </div>
       </div>
@@ -71,6 +71,10 @@ export default {
       this.newItemText = "";
       localStorage.setItem("todos", JSON.stringify(this.tasks));
     },
+    saveTodos() {
+      localStorage.setItem("todos", JSON.stringify(this.tasks));
+      console.log(JSON.stringify(this.tasks));
+    }
   },
   created() {
     let data = localStorage.getItem("todos");
