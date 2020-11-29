@@ -46,10 +46,10 @@ export default {
     return {
       name: "Dmitry",
       tasks: [
-        { action: "Buy flowers", done: false },
+        /*{ action: "Buy flowers", done: false },
         { action: "Get shoes", done: false },
         { action: "Collect tickets", done: true },
-        { action: "Call Joe", done: false },
+        { action: "Call Joe", done: false },*/
       ],
       hideCompleted: true,
       newItemText: "",
@@ -69,7 +69,14 @@ export default {
         done: false,
       });
       this.newItemText = "";
+      localStorage.setItem("todos", JSON.stringify(this.tasks));
     },
+  },
+  created() {
+    let data = localStorage.getItem("todos");
+    if (data != null) {
+      this.tasks = JSON.parse(data);
+    }
   },
 };
 </script>
