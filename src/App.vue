@@ -21,7 +21,7 @@
               type="checkbox"
               v-model="t.done"
               class="form-check-input"
-              @change="saveTodos"
+              @change="storeData"
             />
             {{ t.done }}
           </div>
@@ -45,6 +45,11 @@
           <label class="form-check-label font-weight-bold">
             Hide completed tasks
           </label>
+        </div>
+        <div class="col text-center">
+          <button class="btn btn-sm text-warning" v-on:click="deleteCompleted">
+            Delete completed
+          </button>
         </div>
       </div>
     </div>
@@ -80,12 +85,15 @@ export default {
         action: this.newItemText,
         done: false,
       });
+      this.storeData();
       this.newItemText = "";
+    },
+    storeData() {
       localStorage.setItem("todos", JSON.stringify(this.tasks));
     },
-    saveTodos() {
-      localStorage.setItem("todos", JSON.stringify(this.tasks));
-      console.log(JSON.stringify(this.tasks));
+    deleteCompleted() {
+      this.tasks = this.tasks.filter((t) => !t.done);
+      this.storeData();
     },
   },
   created() {
