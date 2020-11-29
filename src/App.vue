@@ -15,6 +15,14 @@
           {{ t.done }}
         </div>
       </div>
+      <div class="row py-2">
+        <div class="col">
+          <input v-model="newItemText" class="form-control" />
+        </div>
+        <div class="col-2 text-center">
+          <button class="btn btn-primary" v-on:click="addNewTodo">Add</button>
+        </div>
+      </div>
       <div class="row bg-secondary py-2 mt-2 text-white">
         <div class="col text-center">
           <input
@@ -25,14 +33,6 @@
           <label class="form-check-label font-weight-bold">
             Hide completed tasks
           </label>
-        </div>
-      </div>
-      <div class="row py-2">
-        <div class="col">
-          <input v-model="newItemText" class="form-control" />
-        </div>
-        <div class="col-2">
-          <button class="btn btn-primary" v-on:click="addNewTodo">Add</button>
         </div>
       </div>
     </div>
